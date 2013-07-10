@@ -3,9 +3,10 @@ var fs = require('fs');
 
 var app = express.createServer(express.logger());
 
-var rawBuffer = fs.readFileSync('index.html');
-
-var readData = rawBuffer.toString();
+var readData = "";
+fs.readFileSync('index.html', function(err, data) {
+    readData = data;
+});
 
 app.get('/', function(request, response) {
   response.send(readData);
