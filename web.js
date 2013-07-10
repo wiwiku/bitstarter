@@ -1,12 +1,11 @@
-var express = require('express');
+rar express = require('express');
 var fs = require('fs');
 
 var app = express.createServer(express.logger());
 
-var readData = "";
-fs.readFileSync('index.html', function(err, data) {
-    readData = data;
-});
+var rawBuffer = fs.readFileSync('index.html');
+
+var readData = rawBuffer.toString();
 
 app.get('/', function(request, response) {
   response.send(readData);
